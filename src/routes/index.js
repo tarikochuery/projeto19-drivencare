@@ -4,7 +4,7 @@ import userRoutes from "./userRoutes.js";
 
 const routes = Router();
 
-routes.use('/user', userRoutes);
+routes.use('/users', userRoutes);
 routes.use('/doctor', doctorRoutes);
 
 
