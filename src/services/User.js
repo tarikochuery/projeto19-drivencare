@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import userRepository from '../repositories/userRepository.js';
+import errors from '../errors/index.js';
 
 dotenv.config();
 
@@ -9,7 +10,7 @@ const create = async ({ name, email, password, type }) => {
 
   const { rowCount } = await userRepository.getByEmail(email);
 
-  if (rowCount) throw new Error('User already exists');
+  if (rowCount) throw errors.duplicatedEmailError();
 
   const hashPassword = await bcrypt.hash(password, 10);
 
