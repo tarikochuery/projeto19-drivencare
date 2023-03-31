@@ -18,6 +18,18 @@ const signup = Joi.object({
     .valid('doctor', 'pacient')
 });
 
+const signin = Joi.object({
+  email: Joi.string()
+    .email()
+    .required(),
+  password: Joi.string()
+    .required(),
+  type: Joi.string()
+    .required()
+    .valid('pacient', 'doctor')
+});
+
 export default {
-  signup
+  signup,
+  signin
 };

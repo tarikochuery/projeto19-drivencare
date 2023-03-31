@@ -10,6 +10,17 @@ const create = async (req, res, next) => {
   }
 };
 
+const signin = async (req, res, next) => {
+  const { body: user } = req;
+  try {
+    const authData = await User.login(user);
+    res.send(authData);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
-  create
+  create,
+  signin
 };
