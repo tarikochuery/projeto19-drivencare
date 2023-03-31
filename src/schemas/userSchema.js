@@ -12,10 +12,7 @@ const signup = Joi.object({
     .min(6),
   confirmPassword: Joi.string()
     .required()
-    .valid(Joi.ref('password')),
-  type: Joi.string()
-    .required()
-    .valid('doctor', 'pacient')
+    .valid(Joi.ref('password'))
 });
 
 const signin = Joi.object({
@@ -23,10 +20,7 @@ const signin = Joi.object({
     .email()
     .required(),
   password: Joi.string()
-    .required(),
-  type: Joi.string()
     .required()
-    .valid('pacient', 'doctor')
 });
 
 export default {

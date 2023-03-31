@@ -6,9 +6,7 @@ import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
-const create = async ({ name, email, password, type }) => {
-  if (type !== 'pacient') throw errors.forbiddenError();
-
+const create = async ({ name, email, password }) => {
   const { rowCount } = await userRepository.getByEmail(email);
 
   if (rowCount) throw errors.duplicatedEmailError();
@@ -19,13 +17,10 @@ const create = async ({ name, email, password, type }) => {
     name,
     email,
     password: hashPassword,
-    type
   });
 };
 
-const login = async ({ email, password, type }) => {
-  if (type !== 'pacient') throw errors.forbiddenError();
-
+const login = async ({ email, password }) => {
   const { rows: [user] } = await userRepository.getByEmail(email);
   if (!user) throw errors.invalidCredentialsError();
 

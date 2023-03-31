@@ -7,12 +7,12 @@ const getByEmail = async (email) => {
     [email]);
 };
 
-const create = async ({ name, email, password, type }) => {
+const create = async ({ name, email, password }) => {
   await db.query(`
-    INSERT INTO users (name, email, password, type)
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO users (name, email, password)
+    VALUES ($1, $2, $3)
   `,
-    [name, email, password, type]);
+    [name, email, password]);
   return;
 };
 

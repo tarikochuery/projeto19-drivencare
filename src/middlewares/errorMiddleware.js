@@ -1,5 +1,6 @@
 import httpStatus from "http-status";
 const handleAplicationError = (err, req, res, next) => {
+  console.log(err);
   if (err.name === 'DuplicatedEmailError') {
     return res
       .status(httpStatus.CONFLICT)
