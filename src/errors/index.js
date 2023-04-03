@@ -26,9 +26,17 @@ const notFoundError = () => {
   };
 };
 
+const unauthorized = () => {
+  return {
+    name: 'UnauthorizedError',
+    message: 'You must be authenticated to access this page.'
+  };
+};
+
 export default {
   duplicatedEmailError,
   forbiddenError,
   invalidCredentialsError,
-  notFoundError
+  notFoundError,
+  unauthorized
 };
