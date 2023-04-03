@@ -1,5 +1,9 @@
 import db from "../config/db.connection.js";
 
+const getAllScheduledDates = async () => {
+  return await db.query('SELECT date FROM appointment');
+};
+
 const getAppointmentsByUser = async (userId) => {
   return await db.query(`
     SELECT appointment.id, appointment.date, appointment.confirmed, doctors.name as doctor_name, doctors.specialty, doctors.location 
@@ -13,6 +17,15 @@ const getAppointmentsByUser = async (userId) => {
     [userId]);
 };
 
+const create = async ({ date, doctorId, pacientId }) => {
+  await db.query(`
+    INSERT INTO appointment (doctor_id, pacient_id, date, confirmed)
+    VALUES ($1, $2, $3, false);
+  `, [doctorId, pacientId, date]);
+};
+
 export default {
-  getAppointmentsByUser
+  getAppointmentsByUser,
+  create,
+  getAllScheduledDates
 };

@@ -4,6 +4,7 @@ import { schemaValidation } from "../middlewares/schemaValidation.js";
 import userSchema from "../schemas/userSchema.js";
 import tokenValidation from "../middlewares/tokenValidation.js";
 import appointmentController from "../controllers/appointmentController.js";
+import appointmentSchema from "../schemas/appointmentSchema.js";
 
 const userRoutes = Router();
 
@@ -12,7 +13,7 @@ userRoutes.post('/signin', schemaValidation(userSchema.signin), userController.s
 
 userRoutes.use(tokenValidation);
 userRoutes.get('/appointment', appointmentController.getUserAppointment);
-// userRoutes.post('/appointment', schemaValidation(appointmentSchema.user), appointmentController.createUser);
+userRoutes.post('/appointment', schemaValidation(appointmentSchema.user), appointmentController.create);
 // userRoutes.get('/appointment/history', appointmentController.getHistory);
 
 export default userRoutes;

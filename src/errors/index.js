@@ -33,10 +33,18 @@ const unauthorized = () => {
   };
 };
 
+const notAvailableDate = () => {
+  return {
+    name: 'NotAvailableDate',
+    message: 'This date is not available for scheduling.'
+  };
+};
+
 export default {
   duplicatedEmailError,
   forbiddenError,
   invalidCredentialsError,
   notFoundError,
-  unauthorized
+  unauthorized,
+  notAvailableDate
 };
